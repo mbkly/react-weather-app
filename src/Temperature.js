@@ -19,7 +19,7 @@ export default function Temperature(props) {
   if (unit === "celsius") {
     return (
       <div className="Temperature">
-        <span>{props.celsius}</span>
+        <span>{props.celsius} </span>
         <span className="units">
           °C |{" "}
           <a href="/" onClick={showFahrenheit}>
