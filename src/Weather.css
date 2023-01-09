@@ -42,3 +42,7 @@
   line-height: 64px;
   color: rgb(33, 33, 33);
 }
+
+.Weather .unit {
+  text-decoration: none;
+}
