@@ -11,6 +11,8 @@ export default function Weather(props) {
     setWeatherData({
       ready: true,
       city: response.data.city,
+      lon: response.data.coordinates.longitude,
+      lat: response.data.coordinates.latitude,
       description: response.data.condition.description,
       date: new Date(response.data.time * 1000),
       icon: response.data.condition.icon,
