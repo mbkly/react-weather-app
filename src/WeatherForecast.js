@@ -1,85 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./WeatherForecast.css";
-// import "./FormattedDate";
 import "./Weather";
-// import "./WeatherInfo";
-import WeatherIcon from "./WeatherIcon";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props) {
-  function handleResponse(response) {
-    console.log(response.data);
-  }
-  console.log(props);
-  const apiKey = "d5ca172f8c821o9ab51c3t4f02fab6fa";
-  var lon = props.data.lon;
-  var lat = props.data.lat;
-  var unit = "metric";
-  var apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=${unit}`;
-  axios.get(apiURL).then(handleResponse);
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
 
-  return (
-    <div className="WeatherForecast">
-      <div className="container-md text-center">
-        <div className="row">
-          <div className="col">
-            <div className="WeatherForecast-day">Monday</div>
-            <WeatherIcon
-              className= "icon"
-              url={props.data.icon_url}
-              description={props.data.description}
-            />
-            <div className="WeatherForecast-temperatures">
-              <span className="WeatherForecast-temperature-min">20</span>
-              <span className="WeatherForecast-temperature-max">25</span>
-            </div>
-          </div>
-          <div className="col">
-            Tuesday
-            <WeatherIcon
-              url={props.data.icon_url}
-              description={props.data.description}
-            />
-            <div className="WeatherForecast-temperatures">
-              <span className="WeatherForecast-temperature-min">20</span>
-              <span className="WeatherForecast-temperature-max">25</span>
-            </div>
-          </div>
-          <div className="col">
-            Wednesday
-            <WeatherIcon
-              url={props.data.icon_url}
-              description={props.data.description}
-            />
-            <div className="WeatherForecast-temperatures">
-              <span className="WeatherForecast-temperature-min">20</span>
-              <span className="WeatherForecast-temperature-max">25</span>
-            </div>
-          </div>
-          <div className="col">
-            Thursday
-            <WeatherIcon
-              url={props.data.icon_url}
-              description={props.data.description}
-            />
-            <div className="WeatherForecast-temperatures">
-              <span className="WeatherForecast-temperature-min">20</span>
-              <span className="WeatherForecast-temperature-max">25</span>
-            </div>
-          </div>
-          <div className="col">
-            Friday
-            <WeatherIcon
-              url={props.data.icon_url}
-              description={props.data.description}
-            />
-            <div className="WeatherForecast-temperatures">
-              <span className="WeatherForecast-temperature-min">20</span>
-              <span className="WeatherForecast-temperature-max">25</span>
-            </div>
+  function handleResponse(response) {
+    setForecast(response.data.daily);
+    setLoaded(true);
+  }
+
+  if (loaded) {
+    return (
+      <div className="WeatherForecast">
+        <div className="container-md text-center">
+          <div className="row">
+            {forecast.map(function (dailyForecast, index) {
+              if (index < 5)
+                return (
+                  <div className="col" key={index}>
+                    <WeatherForecastDay data={dailyForecast} />
+                  </div>
+                );
+            })}
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = "d5ca172f8c821o9ab51c3t4f02fab6fa";
+    var city = props.data.city;
+    const unit = "metric";
+    const apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${unit}`;
+    axios.get(apiURL).then(handleResponse);
+    return null;
+  }
 }

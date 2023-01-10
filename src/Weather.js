@@ -11,8 +11,6 @@ export default function Weather(props) {
     setWeatherData({
       ready: true,
       city: response.data.city,
-      lon: response.data.coordinates.longitude,
-      lat: response.data.coordinates.latitude,
       description: response.data.condition.description,
       date: new Date(response.data.time * 1000),
       icon: response.data.condition.icon,
@@ -56,11 +54,12 @@ export default function Weather(props) {
               <input
                 type="submit"
                 value="Search"
-                className="btn btn-primary w-100"
+                className="btn w-100"
               />
             </div>
           </div>
         </form>
+        <hr />
         <WeatherInfo data={weatherData} />
         <WeatherForecast data={weatherData} />
       </div>

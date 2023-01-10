@@ -13,6 +13,7 @@ export default function App() {
             href="https://mary-buckley-portfolio.netlify.app/"
             target="_blank"
             rel="noreferrer"
+            className="footer"
           >
             Mary Buckley
           </a>{" "}
@@ -21,8 +22,18 @@ export default function App() {
             href="https://github.com/mbkly/react-weather-app"
             target="_blank"
             rel="noreferrer"
+            className="footer"
           >
             open-sourced on GitHub
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://mb-react-weather-app.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="footer"
+          >
+            hosted on Netlify
           </a>
         </footer>
       </div>
