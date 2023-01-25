@@ -11,10 +11,11 @@
 }
 
 .WeatherForecast-temperature-min {
-  opacity: 0.6;
+  opacity: 0.5;
   margin-right: 5px;
 }
 
 .WeatherForecast-temperature-max {
   margin-left: 5px;
+  font-weight: bold;
 }

@@ -6,7 +6,10 @@
 .App footer {
   font-size: 13px;
   text-align: center;
+  padding: 20px 10px;
+  opacity: 0.75;
 }
+
 .App .footer {
   color: #885df1;
   text-decoration: none;

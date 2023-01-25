@@ -39,6 +39,17 @@ export default function Weather(props) {
   if (weatherData.ready) {
     return (
       <div className="Weather">
+        <a
+          href="https://www.shecodes.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://www.weather.shecodes.io/images/logo.png"
+            class="logo"
+            alt="SheCodes Logo"
+          ></img>
+        </a>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
@@ -58,6 +69,36 @@ export default function Weather(props) {
         <hr />
         <WeatherInfo data={weatherData} />
         <WeatherForecast data={weatherData} />
+        <hr />
+        <footer>
+          This project is coded by{" "}
+          <a
+            href="https://mary-buckley-portfolio.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="footer"
+          >
+            Mary Buckley
+          </a>{" "}
+          and is{" "}
+          <a
+            href="https://github.com/mbkly/react-weather-app"
+            target="_blank"
+            rel="noreferrer"
+            className="footer"
+          >
+            open-sourced on GitHub
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://mb-react-weather-app.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="footer"
+          >
+            hosted on Netlify
+          </a>
+        </footer>
       </div>
     );
   } else {
